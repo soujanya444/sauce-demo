@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Fayda Smoke Suite">
+    <test name="Fayda Smoke Test">
+        <classes>
+            <class name="com.fayda.tests.PlaceOrderTest"/>
+            <class name="com.fayda.tests.LogoutTest"/>
+        </classes>
+    </test>
+</suite>
