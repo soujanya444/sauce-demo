@@ -2,11 +2,14 @@ package com.fayda.tests;
 
 import com.fayda.drivers.DriverManager;
 import com.fayda.utils.PropertyUtils;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import com.fayda.utils.Reporters;
+import org.testng.annotations.*;
 
-import static com.fayda.drivers.DriverManager.driver;
+import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+
+import static com.fayda.drivers.DriverManager.driverObject;
+import static com.fayda.drivers.DriverManager.getDriver;
 import static com.fayda.utils.PropertyUtils.getProperty;
 
 public class BaseTest {
@@ -14,16 +17,29 @@ public class BaseTest {
     @BeforeSuite
     public void initTests(){
         PropertyUtils.initProperties();
+        Reporters.initReporter();
     }
 
     @BeforeMethod
-    public void setupDriver(){
-        DriverManager.getDriver("chrome");
-        driver.get(getProperty("URL"));
+    @Parameters({ "browser" })
+    public void setupDriver(@Optional String browser, Method method) throws MalformedURLException {
+        Reporters.initReportTest(method.getName());
+        String browserRunValue=System.getProperty("browser");
+        if(browserRunValue!=null)
+            browser=browserRunValue;
+        getDriver(browser);
+        driverObject.get().get(getProperty("URL"));
     }
 
     @AfterMethod
     public void killDriver(){
+
         DriverManager.tearDown();
+    }
+
+    @AfterSuite
+    public void closeTests(){
+
+        Reporters.flushReport();
     }
 }

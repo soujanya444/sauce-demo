@@ -12,6 +12,10 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <testScenario/>
+        <extentReportVersion>5.1.2</extentReportVersion>
+        <seleniumVersion>4.37.0</seleniumVersion>
+        <testNGVersion>7.11.0</testNGVersion>
     </properties>
     <build>
         <plugins>
@@ -21,7 +25,7 @@
                 <version>3.5.4</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/suites/Logout.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/suites/${testScenario}.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
@@ -32,14 +36,19 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.37.0</version>
+            <version>${seleniumVersion}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.11.0</version>
+            <version>${testNGVersion}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>${extentReportVersion}</version>
         </dependency>
     </dependencies>
 

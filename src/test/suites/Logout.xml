@@ -1,6 +1,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Fayda Logout Suite">
     <test name="Fayda Logout Test">
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="com.fayda.tests.LogoutTest"/>
         </classes>

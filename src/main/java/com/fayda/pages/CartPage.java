@@ -8,6 +8,7 @@ public class CartPage {
     private static final By checkoutButton=By.id("checkout");
 
     public static void continueToCheckout(){
+
         click(checkoutButton);
     }
 }

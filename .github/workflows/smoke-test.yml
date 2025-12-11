@@ -1,0 +1,17 @@
+name: Smoke Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  grid-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Start Selenium Grid
+        run: docker-compose up -d
+
+      - name: Run tests
+        run: mvn clean test -Dremote="true" -DtestScenario="SmokeTest"
