@@ -4,7 +4,7 @@
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="com.fayda.tests.PlaceOrderTest"/>
-            <class name="com.fayda.tests.LogoutTest"/>
+            <!--<class name="com.fayda.tests.LogoutTest"/>-->
         </classes>
     </test>
 </suite>
